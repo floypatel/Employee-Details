@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class employee {
+    private:
+        int emp_id;
+        string first_name;
+        string second_name;
+        string surname;
+        char gender;
+        string dob;
+        double monthly_basic_salary;
+        
+    public:// Constructor to initialize employee data
+        employee(int id, string first, string second, string last, char g, string date, double salary) {
+            emp_id = id;
+            first_name = first;
+            second_name = second;
+            surname = last;
+            gender = g;
+            dob = date;
+            monthly_basic_salary = salary;
+        }
+        
+        void show_employee() {
+            cout << "Employee ID: " << emp_id << endl;
+            cout << "First Name: " << first_name << endl;
+            cout << "Second Name: " << second_name << endl;
+            cout << "Surname: " << surname << endl;
+            cout << "Gender: " << gender << endl;
+            cout << "Date of Birth: " << dob << endl;
+            cout << "Monthly Basic Salary: " << monthly_basic_salary << endl;
+        }
+        friend double compute_pension(employee emp);
+};
+
+double compute_pension(employee emp) 
+{
+    double pension = emp.monthly_basic_salary * 0.05;
+    cout << "Pension Contribution: " << pension << endl;
+    return pension;
+}
+int main() {
+    // Create an employee object
+    employee emp_obj(37, "Ricken", "Moor", "Tea", 'M', "22-11-1999", 50000.00);
+    // Display employee information
+    emp_obj.show_employee();
+    compute_pension(emp_obj);
+    return 0;
+}
