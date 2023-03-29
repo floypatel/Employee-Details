@@ -1,10 +1,11 @@
+//Fortune Business Systems Ltd Employee Details with pension included
 #include <iostream>
 #include <string>
 using namespace std;
 
 class employee {
     private:
-        int emp_id;
+        int emp_id_number;
         string first_name;
         string second_name;
         string surname;
@@ -14,7 +15,7 @@ class employee {
         
     public:// Constructor to initialize employee data
         employee(int id, string first, string second, string last, char g, string date, double salary) {
-            emp_id = id;
+            emp_id_number = id;
             first_name = first;
             second_name = second;
             surname = last;
@@ -24,13 +25,13 @@ class employee {
         }
         
         void show_employee() {
-            cout << "Employee ID: " << emp_id << endl;
-            cout << "First Name: " << first_name << endl;
-            cout << "Second Name: " << second_name << endl;
-            cout << "Surname: " << surname << endl;
-            cout << "Gender: " << gender << endl;
-            cout << "Date of Birth: " << dob << endl;
-            cout << "Monthly Basic Salary: " << monthly_basic_salary << endl;
+            cout << "ID NUMBER: " << emp_id_number << endl;
+            cout << "FIRST NAME: " << first_name << endl;
+            cout << "SECOND NAME: " << second_name << endl;
+            cout << "SURNAME: " << surname << endl;
+            cout << "GENDER: " << gender << endl;//"M" or "F"
+            cout << "DATE OF BIRTH: " << dob << endl;// date format dd-mm-yyyy
+            cout << "MONTHLY BASIC SALARY IN KSH: " << monthly_basic_salary << endl;
         }
         friend double compute_pension(employee emp);
 };
@@ -38,13 +39,37 @@ class employee {
 double compute_pension(employee emp) 
 {
     double pension = emp.monthly_basic_salary * 0.05;
-    cout << "Pension Contribution: " << pension << endl;
+    cout << "PENSION CONTRIBUTION: " << pension << endl;
     return pension;
 }
 int main() {
-    // Create an employee object
-    employee emp_obj(37, "Ricken", "Moor", "Tea", 'M', "22-11-1999", 50000.00);
-    // Display employee information
+    int id;
+    string first;
+    string second;
+    string last;
+    string dob;
+    char gender;
+    double salary;
+    
+    cout << endl << "ADD EMPLOYEE DETAILS" << endl;
+    cout << "ENTER EMPLOYEE ID: ";
+    cin >> id;
+    cout << "ENTER FIRST NAME: ";
+    cin >> first;
+    cout << "ENTER SECOND NAME: ";
+    cin >> second;
+    cout << "ENTER SURNAME: ";
+    cin >> last;
+    cout << "ENTER GENDER <M/F>: ";
+    cin >> gender;
+    cout << "ENTER DATE OF BIRTH (DD-MM-YYYY): ";
+    cin >> dob;
+    cout << "ENTER MONTHLY BASIC SALARY IN KSH: ";
+    cin >> salary;
+    
+  
+    employee emp_obj(id, first, second, last, gender, dob, salary);
+    cout << endl << "EMPLOYEE DETAILS" << endl;
     emp_obj.show_employee();
     compute_pension(emp_obj);
     return 0;
